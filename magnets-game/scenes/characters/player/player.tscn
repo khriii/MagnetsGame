@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://cinxq3b4t67v6" path="res://assets/sprites/characters/player/magnet_character.png" id="1_7uws0"]
 [ext_resource type="Script" uid="uid://c3m8hdfvcwyyk" path="res://scripts/classes/entity.gd" id="1_t61fv"]
 [ext_resource type="Script" uid="uid://dklh33chc8a74" path="res://scripts/classes/components/movement_component.gd" id="2_686vu"]
+[ext_resource type="Script" uid="uid://bets8i6pm2pw5" path="res://scripts/classes/components/input_component.gd" id="3_hss88"]
+[ext_resource type="Script" uid="uid://dpb3g26k4mrt7" path="res://scripts/classes/states/state_machine.gd" id="4_qd3e3"]
+[ext_resource type="Script" uid="uid://d53ogysdjlnw" path="res://scripts/classes/states/idle.gd" id="5_mk55u"]
+[ext_resource type="Script" uid="uid://cmw7k82hw2ihe" path="res://scripts/classes/states/walk.gd" id="6_xuses"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t61fv"]
 size = Vector2(16, 16)
@@ -130,6 +134,27 @@ metadata/_custom_type_script = "uid://c3m8hdfvcwyyk"
 script = ExtResource("2_686vu")
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://dklh33chc8a74"
+
+[node name="InputComponent" type="Node2D" parent="Components" unique_id=762902091]
+script = ExtResource("3_hss88")
+metadata/_custom_type_script = "uid://bets8i6pm2pw5"
+
+[node name="StateMachine" type="Node" parent="." unique_id=1069769241 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_qd3e3")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://dpb3g26k4mrt7"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1438432155 node_paths=PackedStringArray("movement_component", "input_component", "animated_sprite")]
+script = ExtResource("5_mk55u")
+movement_component = NodePath("../../Components/MovementComponent")
+input_component = NodePath("../../Components/InputComponent")
+animated_sprite = NodePath("../../AnimatedSprite")
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1006318078 node_paths=PackedStringArray("movement_component", "input_component", "animated_sprite")]
+script = ExtResource("6_xuses")
+movement_component = NodePath("../../Components/MovementComponent")
+input_component = NodePath("../../Components/InputComponent")
+animated_sprite = NodePath("../../AnimatedSprite")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1004355843]
 visible = false
