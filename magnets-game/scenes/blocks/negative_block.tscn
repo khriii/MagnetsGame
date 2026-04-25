@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d2ea7ttx8td6c"]
+
+[ext_resource type="Texture2D" uid="uid://df1do37acfajq" path="res://assets/sprites/blocks/negative_block.png" id="1_ojyt5"]
+[ext_resource type="Script" uid="uid://3saf2161m7fe" path="res://scripts/classes/components/magnetic_component.gd" id="2_n1oxv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvemt"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wt7nl"]
+radius = 38.052597
+
+[node name="NegativeBlock" type="RigidBody2D" unique_id=1532420148]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=970412475]
+texture = ExtResource("1_ojyt5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=807137940]
+shape = SubResource("RectangleShape2D_wvemt")
+
+[node name="MagneticComponent" type="Area2D" parent="." unique_id=127168400 node_paths=PackedStringArray("affected_node")]
+script = ExtResource("2_n1oxv")
+polarity = -1
+magnetic_strength = 500.0
+is_movable = true
+affected_node = NodePath("..")
+metadata/_custom_type_script = "uid://3saf2161m7fe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagneticComponent" unique_id=1398469174]
+shape = SubResource("CircleShape2D_wt7nl")

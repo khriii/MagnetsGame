@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c3bj1kt4y5pno"]
+
+[ext_resource type="PackedScene" uid="uid://bvmep4qf7qt1t" path="res://scenes/levels/level1.tscn" id="1_v0702"]
+[ext_resource type="PackedScene" uid="uid://c62blrxkfsn1m" path="res://scenes/characters/player/player.tscn" id="2_dapnl"]
+[ext_resource type="PackedScene" uid="uid://c2wqykfiykyhw" path="res://scenes/blocks/positive_block.tscn" id="3_ijjym"]
+[ext_resource type="PackedScene" uid="uid://d2ea7ttx8td6c" path="res://scenes/blocks/negative_block.tscn" id="4_dapnl"]
+
+[node name="MagnetsWithPlayer" type="Node2D" unique_id=2049469468]
+
+[node name="Level1" parent="." unique_id=1150482761 instance=ExtResource("1_v0702")]
+
+[node name="Player" parent="." unique_id=1027311456 instance=ExtResource("2_dapnl")]
+position = Vector2(260, 61)
+
+[node name="PositiveBlock" parent="." unique_id=1532420148 instance=ExtResource("3_ijjym")]
+position = Vector2(260, 110)
+
+[node name="MagneticComponent" parent="PositiveBlock" index="2" unique_id=127168400]
+magnetic_strength = 100.0
+
+[node name="PositiveBlock2" parent="." unique_id=888032105 instance=ExtResource("3_ijjym")]
+position = Vector2(71, 168)
+
+[node name="MagneticComponent" parent="PositiveBlock2" index="2" unique_id=127168400]
+is_movable = true
+
+[node name="NegativeBlock" parent="." unique_id=1515436851 instance=ExtResource("4_dapnl")]
+position = Vector2(322, 177)
+
+[editable path="PositiveBlock"]
+[editable path="PositiveBlock2"]

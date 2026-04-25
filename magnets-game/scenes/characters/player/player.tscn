@@ -5,8 +5,12 @@
 [ext_resource type="Script" uid="uid://dklh33chc8a74" path="res://scripts/classes/components/movement_component.gd" id="2_686vu"]
 [ext_resource type="Script" uid="uid://bets8i6pm2pw5" path="res://scripts/classes/components/input_component.gd" id="3_hss88"]
 [ext_resource type="Script" uid="uid://dpb3g26k4mrt7" path="res://scripts/classes/states/state_machine.gd" id="4_qd3e3"]
+[ext_resource type="Script" uid="uid://3saf2161m7fe" path="res://scripts/classes/components/magnetic_component.gd" id="4_xuses"]
 [ext_resource type="Script" uid="uid://d53ogysdjlnw" path="res://scripts/classes/states/idle.gd" id="5_mk55u"]
 [ext_resource type="Script" uid="uid://cmw7k82hw2ihe" path="res://scripts/classes/states/walk.gd" id="6_xuses"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42irl"]
+radius = 49.010204
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t61fv"]
 size = Vector2(16, 16)
@@ -126,6 +130,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" unique_id=1027311456]
 script = ExtResource("1_t61fv")
+id = "player"
 metadata/_custom_type_script = "uid://c3m8hdfvcwyyk"
 
 [node name="Components" type="Node2D" parent="." unique_id=920190464]
@@ -133,13 +138,25 @@ metadata/_custom_type_script = "uid://c3m8hdfvcwyyk"
 [node name="MovementComponent" type="Node2D" parent="Components" unique_id=1198509796 node_paths=PackedStringArray("entity")]
 script = ExtResource("2_686vu")
 speed = 100.0
-acceleration = 200.0
+gravity = 300.0
+friction = 2000.0
+acceleration = 400.0
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://dklh33chc8a74"
 
 [node name="InputComponent" type="Node2D" parent="Components" unique_id=762902091]
 script = ExtResource("3_hss88")
 metadata/_custom_type_script = "uid://bets8i6pm2pw5"
+
+[node name="MagneticComponent" type="Area2D" parent="Components" unique_id=1424811034 node_paths=PackedStringArray("affected_node")]
+script = ExtResource("4_xuses")
+magnetic_strength = 4000.0
+is_movable = true
+affected_node = NodePath("../..")
+metadata/_custom_type_script = "uid://3saf2161m7fe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/MagneticComponent" unique_id=1036413857]
+shape = SubResource("CircleShape2D_42irl")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1069769241 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_qd3e3")

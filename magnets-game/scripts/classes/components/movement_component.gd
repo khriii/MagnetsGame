@@ -15,17 +15,19 @@ func move(direction: Vector2, delta: float) -> void:
 		return
 	
 	# Handle x axis movement
-	if direction:
+	if direction.x != 0:
 		entity.velocity.x = move_toward(entity.velocity.x, speed * direction.x, acceleration * delta)
-	else:
+	elif entity.is_on_floor():
 		entity.velocity.x = move_toward(entity.velocity.x, 0, friction * delta)
+	else:
+		entity.velocity.x = move_toward(entity.velocity.x, 0, friction / 20 * delta)
 	
 	# Handle y axis movement (Gravity)
 	if not entity.is_on_floor():
 		entity.velocity.y += gravity * delta
 
+	print(direction)
 	entity.move_and_slide()
-
 
 func _ready() -> void:
 	if not entity:

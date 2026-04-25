@@ -31,7 +31,7 @@ func on_area_entered(area:Area2D):
 func on_area_exited(area:Area2D):
 	if area is MagneticComponent:
 		self.colliding_magnets.erase(area)
-		print(area)
+		#print(area)
 
 #applies movement to self.affected_node given another MagneticComponent
 func handle_polarity_collision(other:MagneticComponent, delta: float)->void:
@@ -62,6 +62,8 @@ func handle_polarity_collision(other:MagneticComponent, delta: float)->void:
 		movement_direction = direction_to_other
 	else:
 		movement_direction = -direction_to_other
+	
+	print(movement_direction)
 	
 	#we apply the force to the node based on its type
 	if self.affected_node is RigidBody2D:
