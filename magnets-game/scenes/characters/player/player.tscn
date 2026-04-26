@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c62blrxkfsn1m"]
 
 [ext_resource type="Texture2D" uid="uid://cinxq3b4t67v6" path="res://assets/sprites/characters/player/magnet_character.png" id="1_7uws0"]
-[ext_resource type="Script" uid="uid://c3m8hdfvcwyyk" path="res://scripts/classes/entity.gd" id="1_t61fv"]
+[ext_resource type="Script" uid="uid://csgd0srd2uad" path="res://scenes/characters/player/player.gd" id="1_xuses"]
 [ext_resource type="Script" uid="uid://dklh33chc8a74" path="res://scripts/classes/components/movement_component.gd" id="2_686vu"]
 [ext_resource type="Script" uid="uid://bets8i6pm2pw5" path="res://scripts/classes/components/input_component.gd" id="3_hss88"]
 [ext_resource type="Script" uid="uid://dpb3g26k4mrt7" path="res://scripts/classes/states/state_machine.gd" id="4_qd3e3"]
@@ -128,8 +128,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=1027311456]
-script = ExtResource("1_t61fv")
+[node name="Player" type="CharacterBody2D" unique_id=1027311456 node_paths=PackedStringArray("input_component", "magnetic_component")]
+script = ExtResource("1_xuses")
+input_component = NodePath("Components/InputComponent")
+magnetic_component = NodePath("Components/MagneticComponent")
 id = "player"
 metadata/_custom_type_script = "uid://c3m8hdfvcwyyk"
 
@@ -146,6 +148,7 @@ metadata/_custom_type_script = "uid://dklh33chc8a74"
 
 [node name="InputComponent" type="Node2D" parent="Components" unique_id=762902091]
 script = ExtResource("3_hss88")
+extra_actions = Array[StringName]([&"change_polarity"])
 metadata/_custom_type_script = "uid://bets8i6pm2pw5"
 
 [node name="MagneticComponent" type="Area2D" parent="Components" unique_id=1424811034 node_paths=PackedStringArray("affected_node")]

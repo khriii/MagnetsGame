@@ -63,7 +63,7 @@ func handle_polarity_collision(other:MagneticComponent, delta: float)->void:
 	else:
 		movement_direction = -direction_to_other
 	
-	print(movement_direction)
+	#print(movement_direction)
 	
 	#we apply the force to the node based on its type
 	if self.affected_node is RigidBody2D:

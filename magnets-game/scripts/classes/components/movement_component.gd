@@ -26,7 +26,6 @@ func move(direction: Vector2, delta: float) -> void:
 	if not entity.is_on_floor():
 		entity.velocity.y += gravity * delta
 
-	print(direction)
 	entity.move_and_slide()
 
 func _ready() -> void:
