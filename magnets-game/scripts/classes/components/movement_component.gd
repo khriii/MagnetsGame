@@ -18,7 +18,9 @@ func move(direction: Vector2, delta: float) -> void:
 	if direction.x != 0:
 		entity.velocity.x = move_toward(entity.velocity.x, speed * direction.x, acceleration * delta)
 	elif entity.is_on_floor():
-		entity.velocity.x = move_toward(entity.velocity.x, 0, friction * delta)
+		var sigma=move_toward(entity.velocity.x, 0, friction * delta)
+		entity.velocity.x = sigma
+		print(sigma)
 	else:
 		entity.velocity.x = move_toward(entity.velocity.x, 0, friction / 20 * delta)
 	
